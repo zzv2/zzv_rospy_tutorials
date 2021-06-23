@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <test test-name="test_pattern_finder_rostest" pkg="zzv_rospy_tutorials" type="test_pattern_finder_rostest.py" time-limit="5.0"/>
+
+  <node name="pattern_finder_node" pkg="zzv_rospy_tutorials" type="pattern_finder_node" output="screen">
+    <rosparam param="sequence">[8, 9, 10]</rosparam>
+  </node>
+</launch>

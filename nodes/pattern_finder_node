@@ -31,7 +31,7 @@ class PatternFinderNode(object):
         self.__pattern_finder = PatternFinder(params, pubs)
 
         rospy.Subscriber('/test_int', Int8,
-                         self.__pattern_finder.int_callback, queue_size=1)
+                         self.__pattern_finder.int_callback, queue_size=100)
 
         rospy.loginfo('Initialized %s successfully.', self.__class__.__name__)
 
