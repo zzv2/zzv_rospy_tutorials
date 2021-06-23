@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+from zzv_rospy_tutorials.pattern_finder import (
+    PatternFinder,
+    PatternFinderParams,
+    PatternFinderPubs,
+)
+
+import rospy
+from std_msgs.msg import (
+    Int8,
+    String,
+)
+
+
+class PatternFinderNode(object):
+    """docstring for PatternFinderNode."""
+
+    def __init__(self):
+        rospy.init_node('pattern_finder')
+
+        params = PatternFinderParams(
+            sequence=rospy.get_param('~sequence')
+        )
+        rospy.loginfo(('params', params))
+
+        pubs = PatternFinderPubs(
+            test_string=rospy.Publisher('/test_string', String, queue_size=1)
+        )
+
+        self.__pattern_finder = PatternFinder(params, pubs)
+
+        rospy.Subscriber('/test_int', Int8,
+                         self.__pattern_finder.int_callback, queue_size=1)
+
+        rospy.loginfo('Initialized %s successfully.', self.__class__.__name__)
+
+
+if __name__ == "__main__":
+    PatternFinderNode()
+    rospy.spin()

@@ -1,0 +1,10 @@
+*~
+*.orig
+*.pyc
+.idea/
+.tags
+flycheck_*
+debian/
+obj-*-linux-gnu/
+*.swp
+*.bak
